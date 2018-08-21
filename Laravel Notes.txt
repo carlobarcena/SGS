@@ -1,0 +1,118 @@
+==============
+March-28-2018
+==============
+
+=================================================================================
+MVC Structure
+1. Model
+2. View
+3. Controller
+
+composer global require "laravel/installer"
+
+to create a project
+composer create-project laravel/laravel <project_name> --prefer-dist
+
+to run your project
+1. go to your folder
+2. php artisan serve
+3. access your site via localhost:8000
+=================================================================================
+
+==============
+April-2-2018
+==============
+
+=================================================================================
+To make DB & Tables
+1. php artisan make:migration <name> --create-<tablename>
+2. To make schema for stringLength:
+   a. open app/Provides/AppServiceProvides.php
+   		include the following lines:
+   		use Schema
+   		inside the boot function:
+   		Schema::defaultStringLength(191);
+3. Create database in phpMyAdmin
+4. Change .env file to the appropriate configuration
+DB_DATABASE=blog
+DB_USERNAME=root
+DB_PASSWORD=
+//subject to change as needed.
+//only do step 2 to 4 if first time.
+
+5. php artisan migrate	
+=================================================================================
+
+==============
+April-3-2018
+==============
+
+=================================================================================
+Controller: php artisan make:controller <name>
+Migration: php artisan make:migration <name> --create-<tablename>
+Model: php artisan make:model <model name> --migration *migration is normal
+
+Locations:
+route -> /routes/web.php
+model -> /app
+view -> /resources/views
+controller -> /app/http/controller
+environment -> .env
+migration -> database/migration
+varchar(191) -> app/Providers/AppServiceProvider.php
+
+$article_obj = new App\Article()
+$article_obj->title = "First Article4";
+$article_obj->content = "Lorem Ipsum4";
+$article_obj->save()
+
+$article1 = App\Article::find(1)
+$title1 = $article1->title
+
+$result = App\Article::where('title','First Article')
+$first = $result->get()
+
+$all = App\Article::all()
+=================================================================================
+
+==============
+April-4-2018
+==============
+
+=================================================================================
+
+return redirect("articles")->with('status','Profile Updated!');
+=================================================================================
+
+==============
+April-5-2018
+==============
+
+=================================================================================
+
+php artisan route:list
+php artisan make:auth
+
+php artisan make:migration add_username_to_users --table=users
+php artisan migrate
+
+php artisan make:model Comment -m
+=================================================================================
+
+==============
+April-16-2018
+==============
+
+=================================================================================
+php artisan make:migration createTeachersTable --create=teachers
+php artisan make:migration createAdminsTable --create=admins
+php artisan make:migration createSubjectsTable --create=subjects
+php artisan make:migration createGroupsTable --create=groups
+
+php artisan make:migration createStudentsTable --create=students
+php artisan make:migration createSubteachTable --create=subteachs
+
+php artisan make:migration createMarksTable --create=marks
+
+=================================================================================
+
